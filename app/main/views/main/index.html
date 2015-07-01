@@ -1,0 +1,53 @@
+<:Title>
+  Home
+
+<:Body>
+  <div class="row">
+    <div class="col-md-4">
+
+      <h1>Players</h1>
+
+      {{ unless cookies._name }}
+        <form e-submit="add_player" role="form">
+          <div class="form-group">
+            <label>Sign In</label>
+            <input class="form-control" type="text" value="{{ page._name }}" />
+          </div>
+        </form>
+      {{end}}
+
+
+      <table class="players-table">
+        {{ standings.each do |player| }}
+        <!-- Use params to store the current index -->
+        <tr
+          e-click="params._id = player.id"
+          class="{{ if current_player == player }}selected{{ end }}"
+          >
+          <td><button e-click="player.destroy; cookies._name = nil">X</button></td>
+          <td class="{{ if false }}complete{{ end }}">{{ player.name }}</td>
+          <td class="{{ if false }}complete{{ end }}">{{ player.points }}</td>
+        </tr>
+        {{ end }}
+      </table>
+
+
+    </div>
+
+    {{ if current_player.value }}
+    <div class="col-md-8">
+      <table class='player'>
+        <tr><td>{{ current_player.name }}</td></tr>
+        <tr><td><button e-click='add_vote(current_player.id.value, 1)'>1</button></td></tr>
+      </table>
+      {{ store.players.each do |player| }}
+        {{   unless player == current_player.value }}
+          <table class='player'>
+            <tr><td>{{ player.name }}</td></tr>
+            <tr><td><button e-click='add_vote(player.id, -2)'>- 2 </button></td></tr>
+          </table>
+        {{end}}
+      {{end}}
+    </div>
+    {{end}}
+  </div>
