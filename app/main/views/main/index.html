@@ -22,10 +22,20 @@
         <!-- Use params to store the current index -->
         <tr
           e-click="params._id = player.id"
-          class="{{ if current_player == player }}selected{{ end }}"
+          class="{{ if current_player.value == player }}selected{{ end }}"
           >
-          <td><button e-click="player.destroy; cookies._name = nil">X</button></td>
-          <td class="{{ if false }}complete{{ end }}">{{ player.name }}</td>
+            <td>
+              {{ if current_player.value == player }}
+                <button e-click="player.destroy; cookies._name = nil">X</button>
+              {{ else }}
+                <button>&nbsp;</button>
+              {{end}}
+            </td>
+            {{ unless current_player.value }}
+              <td e-click='cookies._name = player.name'>{{ player.name }}</td>
+            {{ else }}
+              <td class="{{ if false }}complete{{ end }}">{{ player.name }}</td>
+            {{ end }}
           <td class="{{ if false }}complete{{ end }}">{{ player.points }}</td>
         </tr>
         {{ end }}
