@@ -14,9 +14,9 @@ module Main
     private
 
     def add_player
-      page._name = page._name
+      # page._name = page._name
       store.players << {name: page._name, points: 0}
-      page._name = ''
+      # page._name = ''
     end
     def current_player
       store.players.find(name: page._name).first

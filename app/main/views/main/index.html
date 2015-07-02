@@ -7,7 +7,7 @@
 
       <h1>Players</h1>
 
-      {{ unless page._name }}
+      {{ unless current_player.value }}
         <form e-submit="add_player" role="form">
           <div class="form-group">
             <label>Sign In</label>
