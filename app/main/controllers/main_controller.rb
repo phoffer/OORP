@@ -34,6 +34,10 @@ module Main
       store.votes.reverse.each(&:destroy)
       store.players.each{ |p| p.points = 0 }
     end
+    def reset_game
+      store.votes.reverse.each(&:destroy)
+      store.players.reverse.each(&:destroy)
+    end
     def standings
       store.players.order(:points).reverse
     end
