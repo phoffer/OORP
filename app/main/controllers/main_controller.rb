@@ -30,6 +30,10 @@ module Main
         target.points = target.points + value
       end
     end
+    def reset_round
+      store.votes.reverse.each(&:destroy)
+      store.players.each{ |p| p.points = 0 }
+    end
     def standings
       store.players.order(:points).reverse
     end
