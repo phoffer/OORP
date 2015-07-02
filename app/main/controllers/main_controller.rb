@@ -3,7 +3,7 @@ module Main
   class MainController < Volt::ModelController
     model :store
     def index
-      # cookies._name ||= ''
+      # page._name ||= ''
       # Add code for when the index view is loaded
     end
 
@@ -14,12 +14,12 @@ module Main
     private
 
     def add_player
-      cookies._name = page._name
-      store.players << {name: cookies._name, points: 0}
+      page._name = page._name
+      store.players << {name: page._name, points: 0}
       page._name = ''
     end
     def current_player
-      store.players.find(name: cookies._name).first
+      store.players.find(name: page._name).first
     end
     def current_round
       store.rounds.find(id: 0).first

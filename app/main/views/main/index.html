@@ -7,7 +7,7 @@
 
       <h1>Players</h1>
 
-      {{ unless cookies._name }}
+      {{ unless page._name }}
         <form e-submit="add_player" role="form">
           <div class="form-group">
             <label>Sign In</label>
@@ -21,18 +21,18 @@
         {{ standings.each do |player| }}
         <!-- Use params to store the current index -->
         <tr
-          e-click="params._id = player.id"
+          e-click=""
           class="{{ if current_player.value == player }}selected{{ end }}"
           >
             <td>
               {{ if current_player.value == player }}
-                <button e-click="player.destroy; cookies._name = nil">X</button>
+                <button e-click="player.destroy; page._name = nil">X</button>
               {{ else }}
                 <button>&nbsp;</button>
               {{end}}
             </td>
             {{ unless current_player.value }}
-              <td e-click='cookies._name = player.name'>{{ player.name }}</td>
+              <td e-click='page._name = player.name'>{{ player.name }}</td>
             {{ else }}
               <td class="{{ if false }}complete{{ end }}">{{ player.name }}</td>
             {{ end }}
